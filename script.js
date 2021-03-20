@@ -19,6 +19,9 @@ form.addEventListener("submit", event => {//does function order matter?
    
    if (validateInput()) {
       statusUpdate();
+      validateMass();
+      validateFuel();
+      
    };
 
 });
@@ -66,7 +69,7 @@ function validateMass() {
       launchStatus.style.color = "red";
    }
    else {
-      cargoMass.innerHTML = "Cargo mass low enough for launch";
+      cargoStatus.innerHTML = "Cargo mass low enough for launch";//why does this not change back
    }
 
 };
@@ -81,9 +84,6 @@ function statusUpdate() {
    launchStatus.innerHTML = "Shuttle is ready for launch";
    launchStatus.style.color = "green";
    
-   validateFuel();
-   validateMass();
-
 };
 
 function getPlanet() {
