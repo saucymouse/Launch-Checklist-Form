@@ -95,7 +95,7 @@ function getPlanet() {
 
       missionTarget.innerHTML = `
       <h2>Mission Destination</h2>
-      <ol>
+      <ol style="list-style-type: none">
          <li>Name: ${randomPlanet.name}</li>
          <li>Diameter: ${randomPlanet.diameter}</li>
          <li>Star: ${randomPlanet.star}</li>

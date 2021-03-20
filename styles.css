@@ -1,9 +1,19 @@
 h1 {
+    background-color: #ECF0F1;
     text-align: center;
+    margin: auto;
+    width: 40%;
+    border: 3px solid black;
+    padding: 10px;
 }
 
 div {
     text-align: left;
+}
+
+body {
+    font-family: 'Space Mono', monospace;
+    background-image: url("images/space.jpg");
 }
 
 #faultyItems {
@@ -14,7 +24,7 @@ div {
     background-color: #ECF0F1;
     text-align: center;
     margin: auto;
-    width: 25%;
+    width: 40%;
     border: 3px solid black;
     padding: 10px;
 }
@@ -23,7 +33,7 @@ div {
     background-color: #ECF0F1;
     text-align: center;
     margin: 50px auto;
-    width: 50%;
+    width: 40%;
     border: 3px solid black;
     padding: 10px;
 }
@@ -37,7 +47,7 @@ div {
     background-color: #ECF0F1;
     text-align: center;
     margin: 50px auto;
-    width: 50%;
+    width: 40%;
     border: 3px solid black;
     padding: 10px;
 }
