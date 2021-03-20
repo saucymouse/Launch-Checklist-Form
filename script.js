@@ -19,15 +19,13 @@ form.addEventListener("submit", event => {//does function order matter?
    
    if (validateInput()) {
       statusUpdate();
-      validateMass();
       validateFuel();
-      
+      validateMass();
    };
 
 });
 
 function validateInput() {
-
    const letters = /^[a-z][a-z\s]*$/;
 
    if (pilotName.value === "" || copilotName.value === "" || fuelLevel.value === "" || cargoMass.value === "") {
@@ -43,39 +41,9 @@ function validateInput() {
    else {
       return true;
    }
-
-};
-
-function validateFuel() {
-
-   if (fuelLevel.value < 10000) {
-      alert("Fuel level too low. Must be equal to or greater than 10,000.");
-      fuelStatus.innerHTML = "Fuel level too low for launch";
-      launchStatus.innerHTML = "Shuttle not ready for launch";
-      launchStatus.style.color = "red";
-   }
-   else {
-      fuelStatus.innerHTML = "Fuel level high enough for launch";//since this is the original value, what is a way to revert? 
-   }
-
-};
-
-function validateMass() {
-
-   if (cargoMass.value > 10000) {
-      alert("Cargo mass is too high. Must be equal to or less than 10,000.");
-      cargoStatus.innerHTML = "Cargo mass too high for launch";
-      launchStatus.innerHTML = "Shuttle not ready for launch";
-      launchStatus.style.color = "red";
-   }
-   else {
-      cargoStatus.innerHTML = "Cargo mass low enough for launch";//why does this not change back
-   }
-
 };
 
 function statusUpdate() {
-
    faultyItems.style.visibility = "visible";
 
    pilotStatus.innerHTML = `Pilot ${pilotName.value} is ready for launch`;
@@ -83,16 +51,40 @@ function statusUpdate() {
 
    launchStatus.innerHTML = "Shuttle is ready for launch";
    launchStatus.style.color = "green";
-   
+};
+
+function statusFail() {
+   launchStatus.innerHTML = "Shuttle not ready for launch";
+   launchStatus.style.color = "red";
+};
+
+function validateFuel() {
+   if (fuelLevel.value < 10000) {
+      alert("Fuel level too low. Must be equal to or greater than 10,000.");
+      fuelStatus.innerHTML = "Fuel level too low for launch";
+      statusFail();
+   }
+   else {
+      fuelStatus.innerHTML = "Fuel level high enough for launch";//since this is the original value, what is a way to revert? some kind of toggle something?
+   }
+};
+
+function validateMass() {
+   if (cargoMass.value > 10000) {
+      alert("Cargo mass is too high. Must be equal to or less than 10,000.");
+      cargoStatus.innerHTML = "Cargo mass too high for launch";
+      statusFail();
+   }
+   else {
+      cargoStatus.innerHTML = "Cargo mass low enough for launch";
+   }
 };
 
 function getPlanet() {
-
    fetch('https://handlers.education.launchcode.org/static/planets.json')
    .then(response => response.json())
    .then(data => {
       let randomPlanet = data[Math.floor(Math.random() * data.length)];
-
       missionTarget.innerHTML = `
       <h2>Mission Destination</h2>
       <ol style="list-style-type: none">
@@ -105,5 +97,4 @@ function getPlanet() {
       <img src="${randomPlanet.image}">
       `
    });
-
 };
