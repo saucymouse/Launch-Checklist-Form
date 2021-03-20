@@ -2,6 +2,7 @@ h1 {
     background-color: #ECF0F1;
     text-align: center;
     margin: auto;
+    margin-top: 50px;
     width: 40%;
     border: 3px solid black;
     padding: 10px;
@@ -14,6 +15,7 @@ div {
 body {
     font-family: 'Space Mono', monospace;
     background-image: url("images/space.jpg");
+    background-size: 200%;
 }
 
 #faultyItems {
