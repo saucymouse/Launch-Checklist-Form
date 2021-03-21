@@ -1,83 +1,61 @@
 const form = document.getElementById("launchForm");
-const pilotName = document.getElementById("pilotName");
-const copilotName = document.getElementById("copilotName");
-const fuelLevel = document.getElementById("fuelLevel");
-const cargoMass = document.getElementById("cargoMass");
-
-const pilotStatus = document.getElementById("pilotStatus");
-const copilotStatus = document.getElementById("copilotStatus");
-const fuelStatus = document.getElementById("fuelStatus");
-const cargoStatus = document.getElementById("cargoStatus");
-const faultyItems = document.getElementById("faultyItems");
-const launchStatus = document.getElementById("launchStatus");
-const missionTarget = document.getElementById("missionTarget");
 
 getPlanet();
 
-form.addEventListener("submit", event => {//does function order matter?
-   event.preventDefault()
-   
-   if (validateInput()) {
-      statusUpdate();
-      validateFuel();
-      validateMass();
-   };
-
-});
-
 function validateInput() {
    const letters = /^[a-z][a-z\s]*$/;
-
-   if (pilotName.value === "" || copilotName.value === "" || fuelLevel.value === "" || cargoMass.value === "") {
+   if (
+      form["pilotName"].value === "" || form["copilotName"].value === "" || 
+      form["fuelLevel"].value === "" || form["cargoMass"].value === ""
+      ) {
       alert('All fields required!');
       return false;
    } 
-
-   else if (!pilotName.value.trim().toLowerCase().match(letters) || !copilotName.value.trim().toLowerCase().match(letters)) {
+   else if (
+      !form["pilotName"].value.trim().toLowerCase().match(letters) || 
+      !form["copilotName"].value.trim().toLowerCase().match(letters)
+      ) {
       alert("Pilot names must be...names");
       return false;
    } 
-
    else {
       return true;
-   }
+   };
 };
 
 function statusUpdate() {
-   faultyItems.style.visibility = "visible";
-
-   pilotStatus.innerHTML = `Pilot ${pilotName.value} is ready for launch`;
-   copilotStatus.innerHTML = `Pilot ${copilotName.value} is ready for launch`;
-
-   launchStatus.innerHTML = "Shuttle is ready for launch";
-   launchStatus.style.color = "green";
+   document.getElementById("faultyItems").style.visibility = "visible";
+   document.getElementById("pilotStatus").innerHTML = `Pilot ${form["pilotName"].value} is ready for launch`;
+   document.getElementById("copilotStatus").innerHTML = `Pilot ${form["copilotName"].value} is ready for launch`;
+   document.getElementById("launchStatus").innerHTML = "Shuttle is ready for launch";
+   document.getElementById("launchStatus").style.color = "green";
 };
 
 function statusFail() {
-   launchStatus.innerHTML = "Shuttle not ready for launch";
-   launchStatus.style.color = "red";
+   document.getElementById("launchStatus").innerHTML = "Shuttle not ready for launch";
+   document.getElementById("launchStatus").style.color = "red";
 };
 
 function validateFuel() {
-   if (fuelLevel.value < 10000) {
+   if (form["fuelLevel"].value < 10000) {
       alert("Fuel level too low. Must be equal to or greater than 10,000.");
-      fuelStatus.innerHTML = "Fuel level too low for launch";
+      document.getElementById("fuelStatus").innerHTML = "Fuel level too low for launch";
       statusFail();
-   }
+   } 
    else {
-      fuelStatus.innerHTML = "Fuel level high enough for launch";//since this is the original value, what is a way to revert? some kind of toggle something?
-   }
+      document.getElementById("fuelStatus").innerHTML = "Fuel level high enough for launch";
+   };
 };
 
 function validateMass() {
-   if (cargoMass.value > 10000) {
+   if (form["cargoMass"].value > 10000) {
       alert("Cargo mass is too high. Must be equal to or less than 10,000.");
-      cargoStatus.innerHTML = "Cargo mass too high for launch";
+      document.getElementById("cargoStatus").innerHTML = "Cargo mass too high for launch";
       statusFail();
-   }
+   } 
    else {
-      cargoStatus.innerHTML = "Cargo mass low enough for launch";
-   }
+      document.getElementById("cargoStatus").innerHTML = "Cargo mass low enough for launch";
+   };
 };
 
 function getPlanet() {
@@ -85,7 +63,7 @@ function getPlanet() {
    .then(response => response.json())
    .then(data => {
       let randomPlanet = data[Math.floor(Math.random() * data.length)];
-      missionTarget.innerHTML = `
+      document.getElementById("missionTarget").innerHTML = `
       <h2>Mission Destination</h2>
       <ol style="list-style-type: none">
          <li>Name: ${randomPlanet.name}</li>
@@ -98,3 +76,12 @@ function getPlanet() {
       `
    });
 };
+
+form.addEventListener("submit", event => {
+   event.preventDefault()
+   if (validateInput()) {
+      statusUpdate();
+      validateFuel();
+      validateMass();
+   };
+});
