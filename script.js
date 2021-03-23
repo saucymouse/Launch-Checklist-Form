@@ -5,8 +5,8 @@ getPlanet();
 function validateInput() {
    const letters = /^[a-z][a-z\s]*$/;
    if (
-      form["pilotName"].value === "" || form["copilotName"].value === "" || 
-      form["fuelLevel"].value === "" || form["cargoMass"].value === ""
+      !form["pilotName"].value || !form["copilotName"].value || 
+      !form["fuelLevel"].value || !form["cargoMass"].value
       ) {
       alert('All fields required!');
       return false;
@@ -65,12 +65,12 @@ function getPlanet() {
       let randomPlanet = data[Math.floor(Math.random() * data.length)];
       document.getElementById("missionTarget").innerHTML = `
       <h2>Mission Destination</h2>
-      <ol style="list-style-type: none">
-         <li>Name: ${randomPlanet.name}</li>
-         <li>Diameter: ${randomPlanet.diameter}</li>
-         <li>Star: ${randomPlanet.star}</li>
-         <li>Distance from Earth: ${randomPlanet.distance}</li>
-         <li>Number of Moons: ${randomPlanet.moons}</li>
+      <ol style="list-style-type: none" id="planetInfo">
+         <li><span id="infoType">Name:</span> ${randomPlanet.name}</li>
+         <li><span id="infoType">Diameter</span>: ${randomPlanet.diameter}</li>
+         <li><span id="infoType">Star:</span> ${randomPlanet.star}</li>
+         <li><span id="infoType">Distance from Earth:</span> ${randomPlanet.distance}</li>
+         <li><span id="infoType">Number of Moons:</span> ${randomPlanet.moons}</li>
       </ol>
       <img src="${randomPlanet.image}">
       `

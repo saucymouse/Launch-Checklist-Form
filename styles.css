@@ -54,6 +54,17 @@ body {
     padding: 10px;
 }
 
+#planetInfo {
+    text-align: left;
+    padding-left: 150px;
+    width: 80%;
+    
+}
+
+#infoType {
+    font-weight: bold;
+}
+
 button {
     background-color: #419f6a;
     border: none;
