@@ -41,9 +41,11 @@ function validateFuel() {
       alert("Fuel level too low. Must be equal to or greater than 10,000.");
       document.getElementById("fuelStatus").innerHTML = "Fuel level too low for launch";
       statusFail();
+      return true;
    } 
    else {
       document.getElementById("fuelStatus").innerHTML = "Fuel level high enough for launch";
+      return false;
    };
 };
 
@@ -52,9 +54,11 @@ function validateMass() {
       alert("Cargo mass is too high. Must be equal to or less than 10,000.");
       document.getElementById("cargoStatus").innerHTML = "Cargo mass too high for launch";
       statusFail();
+      return true;
    } 
    else {
       document.getElementById("cargoStatus").innerHTML = "Cargo mass low enough for launch";
+      return false;
    };
 };
 
@@ -77,11 +81,16 @@ function getPlanet() {
    });
 };
 
+
 form.addEventListener("submit", event => {
    event.preventDefault()
    if (validateInput()) {
       statusUpdate();
-      validateFuel();
-      validateMass();
+      // validateFuel();
+      // validateMass();
+      if (validateFuel() === true && validateMass() === true) {
+         console.log('it works')
+      }
    };
 });
+
