@@ -66,6 +66,18 @@ body {
     font-weight: bold;
 }
 
+#launchButton {
+    visibility: hidden;
+}
+
+#launchGif {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    margin-top: -50px;
+    margin-left: -100px;
+}
+
 button {
     background-color: #419f6a;
     border: none;

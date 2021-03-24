@@ -86,11 +86,17 @@ form.addEventListener("submit", event => {
    event.preventDefault()
    if (validateInput()) {
       statusUpdate();
-      // validateFuel();
-      // validateMass();
-      if (validateFuel() === true && validateMass() === true) {
-         console.log('it works')
-      }
-   };
+      validateFuel();
+      validateMass();
+   }
+
+   if (document.getElementById("launchStatus").style.color === "green") {
+      document.getElementById("launchButton").style.visibility = "visible";
+   }
+
 });
 
+launchButton.addEventListener("click", event => {
+   event.preventDefault();
+   window.location = './launch.html'
+});
