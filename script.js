@@ -94,6 +94,10 @@ form.addEventListener("submit", event => {
       document.getElementById("launchButton").style.visibility = "visible";
    }
 
+   if (document.getElementById("launchStatus").style.color === "red") {
+      document.getElementById("launchButton").style.visibility = "hidden";
+   }
+
 });
 
 launchButton.addEventListener("click", event => {
