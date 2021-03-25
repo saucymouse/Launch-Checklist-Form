@@ -88,16 +88,15 @@ form.addEventListener("submit", event => {
       statusUpdate();
       validateFuel();
       validateMass();
-   }
+   };
 
    if (document.getElementById("launchStatus").style.color === "green") {
-      document.getElementById("launchButton").style.visibility = "visible";
-   }
+      document.getElementById("launchButton").style.visibility = "visible";//in a perfect world, this wouldn't be visible or hidden, it would be added or taken away so that it doesn't leave a big empty space when it's not there. I guess that means making a <div> and changing the innerHTML, but I'll go back to it later.
+   };
 
    if (document.getElementById("launchStatus").style.color === "red") {
       document.getElementById("launchButton").style.visibility = "hidden";
-   }
-
+   };
 });
 
 launchButton.addEventListener("click", event => {
