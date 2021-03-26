@@ -3,17 +3,17 @@ const form = document.getElementById("launchForm");
 getPlanet();
 
 function validateInput() {
-   const letters = /^[a-z][a-z\s]*$/;
+   const letters = /^[a-zA-Z\s]*$/;
    if (
-      !form["pilotName"].value || !form["copilotName"].value || 
-      !form["fuelLevel"].value || !form["cargoMass"].value
+      !form["pilotName"].value || !form["copilotName"].value 
+      || !form["fuelLevel"].value || !form["cargoMass"].value
       ) {
       alert('All fields required!');
       return false;
    } 
    else if (
-      !form["pilotName"].value.trim().toLowerCase().match(letters) || 
-      !form["copilotName"].value.trim().toLowerCase().match(letters)
+      !form["pilotName"].value.trim().match(letters) 
+      || !form["copilotName"].value.trim().match(letters)
       ) {
       alert("Pilot names must be...names");
       return false;
